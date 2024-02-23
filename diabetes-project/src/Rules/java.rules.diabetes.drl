@@ -1,0 +1,10 @@
+
+
+package diabetes.project
+
+rule "test"
+when
+    // condition
+then
+    // action
+end
