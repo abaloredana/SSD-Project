@@ -33,6 +33,7 @@ public class DiabetesLogic {
         // KieRuntimeLogger logger = ks.getLoggers().newThreadedFileLogger( ksession, "./helloworld", 1000 );
         // The application can insert facts into the session
         Patient patient = new Patient();
+        patient.setTypeOfDiabetes(1);
         patient.setBmi(25);
         
         

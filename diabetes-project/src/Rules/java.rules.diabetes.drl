@@ -9,3 +9,12 @@ when
 then
     // action
 end
+
+rule "Apply Insulin Therapy for Type 1 Diabetes"
+when
+    $patient : Patient(typeOfDiabetes == 1)
+then
+    $patient.applyTreatment("Insulin Therapy", true);
+    System.out.println("Insulin Therapy has been applied for: " + $patient);
+end
+

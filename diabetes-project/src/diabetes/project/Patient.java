@@ -13,10 +13,14 @@ import java.util.List;
  * @author loredana
  */
 public class Patient {
+
+    public List<String> getDiseases() {
+        return diseases;
+    }
     private int typeOfDiabetes;
     private boolean hypotension;
     private List<String> diseases= new ArrayList<String>();
-
+    private List<Treatment> treatments = new ArrayList<>();
     private double bmi;
     private int age;
 
@@ -29,9 +33,24 @@ public class Patient {
     }
 
     Patient() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+    }
+   
+
+    public void addTreatment(Treatment treatment) {
+        this.treatments.add(treatment);
     }
 
+    public void applyTreatment(String treatmentName, boolean apply) {
+        for (Treatment treatment : treatments) {
+            if (treatment.getName().equals(treatmentName)) {
+                treatment.setShouldBeApplied(apply);
+                return;
+            }
+        }
+        // If treatment not found, add it with the specified application status
+        addTreatment(new Treatment(treatmentName, apply));
+    }
     // Getters and Setters
     public int getTypeOfDiabetes() {
         return typeOfDiabetes;
@@ -65,7 +84,9 @@ public class Patient {
         this.age = age;
     }
 
-
+    public List<Treatment> getTreatments() {
+        return treatments;
+    }
 
     
     public static Patient doSomething(Patient message) {
