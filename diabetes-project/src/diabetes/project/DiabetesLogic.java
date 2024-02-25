@@ -10,7 +10,7 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
 
-public class Diabetes {
+public class DiabetesLogic {
 
     /**
      * @param args the command line arguments
@@ -33,7 +33,7 @@ public class Diabetes {
         // KieRuntimeLogger logger = ks.getLoggers().newThreadedFileLogger( ksession, "./helloworld", 1000 );
         // The application can insert facts into the session
         Patient patient = new Patient();
-        patient.setWeight(70);
+        patient.setBmi(25);
         
         
         ksession.insert(patient);

@@ -1,6 +1,7 @@
 
 
 package diabetes.project
+import diabetes.project.Patient
 
 rule "test"
 when
