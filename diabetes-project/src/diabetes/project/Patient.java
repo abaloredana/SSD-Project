@@ -17,6 +17,19 @@ public class Patient {
     public List<String> getDiseases() {
         return diseases;
     }
+    private String name;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDiseases(List<String> diseases) {
+        this.diseases = diseases;
+    }
+
+    public void setTreatments(List<Treatment> treatments) {
+        this.treatments = treatments;
+    }
     private int typeOfDiabetes;
     private boolean hypotension;
     private List<String> diseases= new ArrayList<String>();

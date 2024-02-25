@@ -2,19 +2,20 @@
 
 package diabetes.project
 import diabetes.project.Patient
-
-rule "test"
-when
-    // condition
-then
-    // action
-end
+import diabetes.project.Treatment
 
 rule "Apply Insulin Therapy for Type 1 Diabetes"
-when
+    when
     $patient : Patient(typeOfDiabetes == 1)
-then
-    $patient.applyTreatment("Insulin Therapy", true);
-    System.out.println("Insulin Therapy has been applied for: " + $patient);
+    then
+        $patient.applyTreatment("Insulin Therapy", true);
+        System.out.println("Insulin has been applied for: " + $patient);
 end
 
+rule "Apply Insulin Therapy for Type 2 Diabetes"
+    when
+        $patient : Patient(typeOfDiabetes == 2, age < 11)
+    then
+         $patient.applyTreatment("Insulin Therapy", true);
+         System.out.println("Insulin Therapy has been applied for: " + $patient);
+end
