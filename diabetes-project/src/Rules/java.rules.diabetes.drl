@@ -9,7 +9,7 @@ rule "Apply Insulin Therapy for Type 1 Diabetes"
     $patient : Patient(typeOfDiabetes == 1)
     then
         $patient.applyTreatment("Insulin Therapy", true);
-        System.out.println("Insulin has been applied for: " + $patient);
+        System.out.println("Insulin Therapy has been applied for: " + $patient);
 end
 
 rule "Apply Insulin Therapy for Type 2 Diabetes"
