@@ -13,17 +13,21 @@ import java.util.List;
  * @author loredana
  */
 public class Patient {
+    private String name;
     private int typeOfDiabetes;
-    private boolean hypotension;
     private List<String> diseases= new ArrayList<String>();
     private List<Treatment> treatments = new ArrayList<>();
     private double bmi;
     private int age;
 
+    @Override
+    public String toString() {
+        return "Patient{" + "typeOfDiabetes=" + typeOfDiabetes +  ", diseases=" + diseases + ", treatments=" + treatments + ", bmi=" + bmi + ", age=" + age + ", name=" + name + '}';
+    }
+
     public List<String> getDiseases() {
         return diseases;
     }
-    private String name;
 
     public void setName(String name) {
         this.name = name;
@@ -39,9 +43,8 @@ public class Patient {
    
 
     // Constructor
-    public Patient(int typeOfDiabetes, boolean hypotension, double bmi, int age) {
+    public Patient(int typeOfDiabetes, double bmi, int age) {
         this.typeOfDiabetes = typeOfDiabetes;
-        this.hypotension = hypotension;
         this.bmi = bmi;
         this.age = age;
     }
@@ -55,15 +58,16 @@ public class Patient {
         this.treatments.add(treatment);
     }
 
-    public void applyTreatment(String treatmentName, boolean apply) {
+    public void applyTreatment(String treatmentName, boolean apply, double priority) {
         for (Treatment treatment : treatments) {
             if (treatment.getName().equals(treatmentName)) {
                 treatment.setShouldBeApplied(apply);
+                treatment.setPriority(priority);
                 return;
             }
         }
         // If treatment not found, add it with the specified application status
-        addTreatment(new Treatment(treatmentName, apply));
+        addTreatment(new Treatment(treatmentName, apply, priority));
     }
     // Getters and Setters
     public int getTypeOfDiabetes() {
@@ -72,14 +76,6 @@ public class Patient {
 
     public void setTypeOfDiabetes(int typeOfDiabetes) {
         this.typeOfDiabetes = typeOfDiabetes;
-    }
-
-    public boolean isHypotension() {
-        return hypotension;
-    }
-
-    public void setHypotension(boolean hypotension) {
-        this.hypotension = hypotension;
     }
 
     public double getBmi() {

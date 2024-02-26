@@ -1,23 +1,64 @@
 
-
 package diabetes.project
 import diabetes.project.Patient
 import diabetes.project.Treatment
 
-rule "Apply Insulin Therapy for Type 1 Diabetes"
+// DIABETES ONLY
+
+rule "Therapy for any Type Diabetes"
     when
-    $patient : Patient(typeOfDiabetes == 1)
+    $patient : Patient(age <10)
     then
-        $patient.applyTreatment("Insulin Therapy", true);
-        $patient.addTreatment(new Treatment("Insulin", true));
-        system.out.println($patient.treatments)
-        System.out.println("Insulin Therapy has been applied for: " + $patient);
+        $patient.applyTreatment("Insulin", true, 1.0);
+        
 end
 
-rule "Apply Insulin Therapy for Type 2 Diabetes"
+// TYPE 1
+
+rule "Apply Insulin Therapy for Type 1 Diabetes"
     when
-        $patient : Patient(typeOfDiabetes == 2, age < 11)
+    $patient : Patient(typeOfDiabetes == 1, age >= 10, bmi <25)
     then
-         $patient.applyTreatment("Insulin Therapy", true);
-         System.out.println("Insulin Therapy has been applied for: " + $patient);
+        $patient.applyTreatment("Insulin", true, 1.0);
+        
+        
 end
+
+rule "Therapy for Type 1 Diabetes, overweight"
+    when
+    $patient : Patient(typeOfDiabetes == 1, age >= 10, bmi >= 25)
+    then
+        $patient.applyTreatment("Insulin", true, 2.0/3.0);
+        $patient.applyTreatment("Metmorfin", true, 1.0/3.0);
+        
+        
+end
+
+// TYPE 2
+
+rule "Therapy for Type 2 Diabetes"
+    when
+        $patient : Patient(typeOfDiabetes == 2, 10 <= age && age < 12)
+    then
+        $patient.applyTreatment("Insulin", true, 1.0/3.0);
+        $patient.applyTreatment("Metmorfin", true, 2.0/3.0);
+end
+
+rule "Apply Metmorfin for Type 2 Diabetes"
+    when
+        $patient : Patient(typeOfDiabetes == 2, bmi < 18.5, 12 <= age && age < 18 )
+    then
+        $patient.applyTreatment("Insulin", true, 1.0/3.0);
+        $patient.applyTreatment("Metmorfin", true, 2.0/3.0);
+         
+end
+
+rule "Apply Metmorfin  Type 2 Diabetes"
+    when
+        $patient : Patient(typeOfDiabetes == 2, age > 9 && age < 13 )
+    then
+         $patient.applyTreatment("Metmorfin", true, 1.0);
+         
+end
+
+

@@ -9,12 +9,27 @@ package diabetes.project;
  * @author loredana
  */
 public class Treatment {
-     private String name;
+    private String name;
     private boolean shouldBeApplied;
+    private double priority;
 
-    public Treatment(String name, boolean shouldBeApplied) {
+    public double getPriority() {
+        return priority;
+    }
+
+    public void setPriority(double priority) {
+        this.priority = priority;
+    }
+
+    @Override
+    public String toString() {
+        return "Treatment{" + "name=" + name + ", shouldBeApplied=" + shouldBeApplied + ", priority=" + priority + '}';
+    }
+
+    public Treatment(String name, boolean shouldBeApplied, double priority) {
         this.name = name;
         this.shouldBeApplied = shouldBeApplied;
+        this.priority = priority;
     }
 
     // Getters and Setters
@@ -34,9 +49,5 @@ public class Treatment {
         this.shouldBeApplied = shouldBeApplied;
     }
 
-    @Override
-    public String toString() {
-        return "(" + name + ", " + shouldBeApplied + ")";
-    }
     
 }

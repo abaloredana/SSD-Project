@@ -32,21 +32,27 @@ public class DiabetesLogic {
         // uncomment the next line
         // KieRuntimeLogger logger = ks.getLoggers().newThreadedFileLogger( ksession, "./helloworld", 1000 );
         // The application can insert facts into the session
-        Patient p1 = new Patient();
-        p1.setTypeOfDiabetes(1);
-        p1.setBmi(25);
-        p1.setName("Loredana");
+        Patient andrea = new Patient();
+        andrea.setTypeOfDiabetes(1);
+        andrea.setBmi(28);
+        andrea.setAge(23);
+        andrea.setName("Andrea");
         
-        Patient p2 = new Patient();
-        p2.setAge(9);
-        p2.setTypeOfDiabetes(2);
+        Patient loredana = new Patient();
+        loredana.setAge(11);
+        loredana.setTypeOfDiabetes(1);
+        loredana.setBmi(10);
+        loredana.setName("lore");
         
         
-        ksession.insert(p1);
-        ksession.insert(p2);
+        ksession.insert(andrea);
+        ksession.insert(loredana);
 
         // and fire the rules
         ksession.fireAllRules();
+        
+        System.out.println(andrea);
+        System.out.println(loredana);
 
 
         // and then dispose the session
