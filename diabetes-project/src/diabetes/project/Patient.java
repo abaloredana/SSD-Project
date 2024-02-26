@@ -13,6 +13,12 @@ import java.util.List;
  * @author loredana
  */
 public class Patient {
+    private int typeOfDiabetes;
+    private boolean hypotension;
+    private List<String> diseases= new ArrayList<String>();
+    private List<Treatment> treatments = new ArrayList<>();
+    private double bmi;
+    private int age;
 
     public List<String> getDiseases() {
         return diseases;
@@ -30,12 +36,7 @@ public class Patient {
     public void setTreatments(List<Treatment> treatments) {
         this.treatments = treatments;
     }
-    private int typeOfDiabetes;
-    private boolean hypotension;
-    private List<String> diseases= new ArrayList<String>();
-    private List<Treatment> treatments = new ArrayList<>();
-    private double bmi;
-    private int age;
+   
 
     // Constructor
     public Patient(int typeOfDiabetes, boolean hypotension, double bmi, int age) {
