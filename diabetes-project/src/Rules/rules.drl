@@ -1,0 +1,226 @@
+
+package diabetes.project
+import diabetes.project.Patient
+import diabetes.project.Treatment
+
+//TYPE 1 DIABETES
+
+rule "Therapy for Type 1 Diabetes"
+    when
+    $patient : Patient(typeOfDiabetes == 1)
+    then
+        $patient.applyTreatment("Insulin", true, 100.0);   
+end
+
+rule "Therapy for Type 1 Diabetes, overweight"
+    when
+    $patient : Patient(typeOfDiabetes == 1, bmi >= 25)
+    then
+        $patient.applyTreatment("Insulin", true, 100.0);
+        $patient.applyTreatment("Metmorfin", true, 100.0);     
+end
+
+//TYPE 2 DIABETES
+
+rule "Therapy for Type 2 Diabetes"
+    when
+    $patient : Patient(typeOfDiabetes == 2)
+    then
+        $patient.applyTreatment("Insulin", true, 100.0);
+        $patient.applyTreatment("Metmorfin", true, 100.0);
+        $patient.applyTreatment("Sitagliptin", true, 100.0);
+        $patient.applyTreatment("Saxagliptin", true, 100.0);
+        $patient.applyTreatment("Linagliptin", true, 100.0);
+        $patient.applyTreatment("Dulaglutide", true, 100.0);
+        $patient.applyTreatment("Exenatide", true, 100.0);
+        $patient.applyTreatment("Lixisenatide", true, 100.0);
+        $patient.applyTreatment("Semaglutide", true, 100.0);
+        $patient.applyTreatment("Bexagliflozin", true, 100.0);
+        $patient.applyTreatment("Canagliflozin", true, 100.0);
+        $patient.applyTreatment("Dapagliflozin", true, 100.0);
+        $patient.applyTreatment("Glimepiride", true, 100.0);
+        $patient.applyTreatment("Glipizide", true, 100.0);
+        $patient.applyTreatment("Glyburide", true, 100.0);
+        $patient.applyTreatment("Rosiglitazone", true, 100.0);
+        $patient.applyTreatment("Pioglitazone", true, 100.0);    
+end
+
+rule "Therapy for No Insulin Production"
+    when
+    $patient : Patient(insulinProd.equalsIgnoreCase("NO"))
+    then
+        $patient.applyTreatment("Insulin", true, 100.0);
+        
+end
+
+rule "Therapy for Hypoinsulinemia"
+    when
+    $patient : Patient(insulinProd.equalsIgnoreCase("HYPOINSULINEMIA"))
+    then
+        $patient.applyTreatment("Insulin", true, 100.0);
+        $patient.applyTreatment("Glimepiride", true, 100.0);
+        $patient.applyTreatment("Glipizide", true, 100.0);
+        $patient.applyTreatment("Glyburide", true, 100.0);
+        
+end
+
+rule "Therapy for Normoinsulinemia"
+    when
+    $patient : Patient(insulinProd.equalsIgnoreCase("NORMOINSULINEMIA"))
+    then
+       
+        $patient.applyTreatment("Metmorfin", true, 100.0);
+        $patient.applyTreatment("Sitagliptin", true, 100.0);
+        $patient.applyTreatment("Saxagliptin", true, 100.0);
+        $patient.applyTreatment("Linagliptin", true, 100.0);
+        $patient.applyTreatment("Dulaglutide", true, 100.0);
+        $patient.applyTreatment("Exenatide", true, 100.0);
+        $patient.applyTreatment("Lixisenatide", true, 100.0);
+        $patient.applyTreatment("Semaglutide", true, 100.0);
+        $patient.applyTreatment("Glimepiride", true, 100.0);
+        $patient.applyTreatment("Glipizide", true, 100.0);
+        $patient.applyTreatment("Glyburide", true, 100.0);
+        
+end 
+
+rule "Therapy for Hyperinsulinemia"
+    when
+    $patient : Patient(insulinProd.equalsIgnoreCase("HYPERINSULINEMIA"))
+    then
+        
+        $patient.applyTreatment("Metmorfin", true, 100.0);
+        $patient.applyTreatment("Dulaglutide", true, 100.0);
+        $patient.applyTreatment("Exenatide", true, 100.0);
+        $patient.applyTreatment("Lixisenatide", true, 100.0);
+        $patient.applyTreatment("Semaglutide", true, 100.0);
+        $patient.applyTreatment("Bexagliflozin", true, 100.0);
+        $patient.applyTreatment("Canagliflozin", true, 100.0);
+        $patient.applyTreatment("Dapagliflozin", true, 100.0);
+        $patient.applyTreatment("Rosiglitazone", true, 100.0);
+        $patient.applyTreatment("Pioglitazone", true, 100.0);    
+end
+
+rule "Therapy for Insulin Resistance"
+    when
+    $patient : Patient(insulinRes == true)
+    then
+        $patient.applyTreatment("Metmorfin", true, 100.0);
+        $patient.applyTreatment("Sitagliptin", true, 100.0);
+        $patient.applyTreatment("Saxagliptin", true, 100.0);
+        $patient.applyTreatment("Linagliptin", true, 100.0);
+        $patient.applyTreatment("Dulaglutide", true, 100.0);
+        $patient.applyTreatment("Exenatide", true, 100.0);
+        $patient.applyTreatment("Lixisenatide", true, 100.0);
+        $patient.applyTreatment("Semaglutide", true, 100.0);
+        $patient.applyTreatment("Bexagliflozin", true, 100.0);
+        $patient.applyTreatment("Canagliflozin", true, 100.0);
+        $patient.applyTreatment("Dapagliflozin", true, 100.0);
+        $patient.applyTreatment("Glimepiride", true, 100.0);
+        $patient.applyTreatment("Glipizide", true, 100.0);
+        $patient.applyTreatment("Glyburide", true, 100.0);
+        $patient.applyTreatment("Rosiglitazone", true, 100.0);
+        $patient.applyTreatment("Pioglitazone", true, 100.0);    
+end
+
+rule "Therapy for Hypotension"
+    when
+    $patient : Patient(hypotension == true)
+    then
+        $patient.applyTreatment("Insulin", true, 100.0);
+        $patient.applyTreatment("Metmorfin", true, 100.0);
+        $patient.applyTreatment("Sitagliptin", true, 100.0);
+        $patient.applyTreatment("Saxagliptin", true, 100.0);
+        $patient.applyTreatment("Linagliptin", true, 100.0);
+        $patient.applyTreatment("Dulaglutide", true, 100.0);
+        $patient.applyTreatment("Exenatide", true, 100.0);
+        $patient.applyTreatment("Lixisenatide", true, 100.0);
+        $patient.applyTreatment("Semaglutide", true, 100.0);
+        $patient.applyTreatment("Bexagliflozin", true, 100.0);
+        $patient.applyTreatment("Canagliflozin", true, 100.0);
+        $patient.applyTreatment("Dapagliflozin", true, 100.0);
+        $patient.applyTreatment("Glimepiride", true, 100.0);
+        $patient.applyTreatment("Glipizide", true, 100.0);
+        $patient.applyTreatment("Glyburide", true, 100.0);
+        
+end
+
+rule "Therapy for Dyslipidemia"
+    when
+    $patient : Patient(dyslipidemia == true)
+    then
+        $patient.applyTreatment("Insulin", true, 100.0);
+        $patient.applyTreatment("Metmorfin", true, 100.0);
+        $patient.applyTreatment("Sitagliptin", true, 100.0);
+        $patient.applyTreatment("Saxagliptin", true, 100.0);
+        $patient.applyTreatment("Linagliptin", true, 100.0);
+        $patient.applyTreatment("Dulaglutide", true, 100.0);
+        $patient.applyTreatment("Exenatide", true, 100.0);
+        $patient.applyTreatment("Lixisenatide", true, 100.0);
+        $patient.applyTreatment("Semaglutide", true, 100.0);
+        $patient.applyTreatment("Bexagliflozin", true, 100.0);
+        $patient.applyTreatment("Canagliflozin", true, 100.0);
+        $patient.applyTreatment("Dapagliflozin", true, 100.0);
+        $patient.applyTreatment("Glimepiride", true, 100.0);
+        $patient.applyTreatment("Glipizide", true, 100.0);
+        $patient.applyTreatment("Glyburide", true, 100.0);    
+end
+
+rule "Therapy for Peripheral Arterial Disease"
+    when
+    $patient : Patient(pad == true)
+    then
+        $patient.applyTreatment("Insulin", true, 100.0);
+        $patient.applyTreatment("Metmorfin", true, 100.0);
+        $patient.applyTreatment("Sitagliptin", true, 100.0);
+        $patient.applyTreatment("Saxagliptin", true, 100.0);
+        $patient.applyTreatment("Linagliptin", true, 100.0);
+        $patient.applyTreatment("Dulaglutide", true, 100.0);
+        $patient.applyTreatment("Exenatide", true, 100.0);
+        $patient.applyTreatment("Lixisenatide", true, 100.0);
+        $patient.applyTreatment("Semaglutide", true, 100.0);
+        $patient.applyTreatment("Bexagliflozin", true, 100.0);
+        $patient.applyTreatment("Canagliflozin", true, 100.0);
+        $patient.applyTreatment("Dapagliflozin", true, 100.0);
+        $patient.applyTreatment("Glimepiride", true, 100.0);
+        $patient.applyTreatment("Glipizide", true, 100.0);
+        $patient.applyTreatment("Glyburide", true, 100.0);
+        $patient.applyTreatment("Rosiglitazone", true, 100.0);
+        $patient.applyTreatment("Pioglitazone", true, 100.0);    
+end
+
+rule "Therapy for Non-Alcoholic Fatty Liver Disease"
+    when
+    $patient : Patient(nafld == true)
+    then
+        $patient.applyTreatment("Insulin", true, 100.0);
+        $patient.applyTreatment("Metmorfin", true, 100.0);
+        $patient.applyTreatment("Sitagliptin", true, 100.0);
+        $patient.applyTreatment("Saxagliptin", true, 100.0);
+        $patient.applyTreatment("Linagliptin", true, 100.0);
+        $patient.applyTreatment("Dulaglutide", true, 100.0);
+        $patient.applyTreatment("Exenatide", true, 100.0);
+        $patient.applyTreatment("Lixisenatide", true, 100.0);
+        $patient.applyTreatment("Semaglutide", true, 100.0);
+        $patient.applyTreatment("Bexagliflozin", true, 100.0);
+        $patient.applyTreatment("Canagliflozin", true, 100.0);
+        $patient.applyTreatment("Dapagliflozin", true, 100.0);
+        $patient.applyTreatment("Rosiglitazone", true, 100.0);
+        $patient.applyTreatment("Pioglitazone", true, 100.0);    
+end
+
+rule "Therapy for Osteoporosis"
+    when
+    $patient : Patient(osteoporosis == true)
+    then
+        $patient.applyTreatment("Metmorfin", true, 100.0);
+        $patient.applyTreatment("Sitagliptin", true, 100.0);
+        $patient.applyTreatment("Saxagliptin", true, 100.0); // unk
+        $patient.applyTreatment("Linagliptin", true, 100.0);// unk
+        $patient.applyTreatment("Dulaglutide", true, 100.0);// unk
+        $patient.applyTreatment("Exenatide", true, 100.0);
+        $patient.applyTreatment("Lixisenatide", true, 100.0);
+        $patient.applyTreatment("Semaglutide", true, 100.0);
+        $patient.applyTreatment("Bexagliflozin", true, 100.0);// unk
+        $patient.applyTreatment("Canagliflozin", true, 100.0);// unk
+        $patient.applyTreatment("Dapagliflozin", true, 100.0);// unk  
+end

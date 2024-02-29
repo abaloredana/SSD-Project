@@ -7,6 +7,7 @@ package diabetes.project;
 
 import java.util.ArrayList;
 import java.util.List;
+import diabetes.project.Disease;
 
 /**
  *
@@ -15,39 +16,43 @@ import java.util.List;
 public class Patient {
     private String name;
     private int typeOfDiabetes;
-    private List<String> diseases= new ArrayList<String>();
     private List<Treatment> treatments = new ArrayList<>();
     private double bmi;
     private int age;
+    private String insulinProd;
+    private boolean insulinRes;
+    private boolean hypotension;
+    private boolean dyslipidemia;
+    private boolean pad;
+    private boolean nafld;
+    private boolean osteoporosis;
+    
+    
+
+    public String getInsulinProd() {
+        return insulinProd;
+    }
+
+    public void setInsulinProd(String insulinProd) {
+        this.insulinProd = insulinProd;
+    }
 
     @Override
     public String toString() {
-        return "Patient{" + "typeOfDiabetes=" + typeOfDiabetes +  ", diseases=" + diseases + ", treatments=" + treatments + ", bmi=" + bmi + ", age=" + age + ", name=" + name + '}';
+        return "Patient{" + "typeOfDiabetes=" + typeOfDiabetes + ", treatments=" + treatments + ", bmi=" + bmi + ", age=" + age + ", name=" + name + '}';
     }
 
-    public List<String> getDiseases() {
-        return diseases;
-    }
+  
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setDiseases(List<String> diseases) {
-        this.diseases = diseases;
-    }
 
     public void setTreatments(List<Treatment> treatments) {
         this.treatments = treatments;
     }
-   
 
-    // Constructor
-    public Patient(int typeOfDiabetes, double bmi, int age) {
-        this.typeOfDiabetes = typeOfDiabetes;
-        this.bmi = bmi;
-        this.age = age;
-    }
 
     Patient() {
         

@@ -116,6 +116,7 @@ rule "Therapy for Type 2 Diabetes, normoweight, adults"
         $patient.applyTreatment("Dulaglutide", true,1.0/17.0);
         $patient.applyTreatment("Exenatide", true,1.0/17.0);
         $patient.applyTreatment("Lixisenatide", true,1.0/17.0);
+        $patient.applyTreatment("Semaglutide", true,1.0/17.0);
         $patient.applyTreatment("Bexagliflozin", true,1.0/17.0);
         $patient.applyTreatment("Canagliflozin", true,1.0/17.0);
         $patient.applyTreatment("Dapagliflozin", true,1.0/17.0);
@@ -125,5 +126,13 @@ rule "Therapy for Type 2 Diabetes, normoweight, adults"
         $patient.applyTreatment("Rosiglitazone", true,1.0/17.0);
         $patient.applyTreatment("Pioglitazone", true,1.0/17.0);
 
+end
+
+rule "Therapy for Type 1 Diabetes, overweight, no infants"
+    when
+    $patient : Patient(typeOfDiabetes == 1, age >= 10, bmi >= 25)
+    then
+        $patient.applyTreatment("Insulin", true, 2.0/3.0);
+        $patient.applyTreatment("Metmorfin", true, 1.0/3.0);     
 end
 
