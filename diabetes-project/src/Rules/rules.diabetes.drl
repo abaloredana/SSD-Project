@@ -5,7 +5,7 @@ import diabetes.project.Treatment
 
 // DIABETES ONLY
 
-rule "Therapy for any Type Diabetes"
+rule "Apply Insulin Therapy for any-type Diabetes, infants"
     when
     $patient : Patient(age <10)
     then
@@ -15,7 +15,7 @@ end
 
 // TYPE 1
 
-rule "Apply Insulin Therapy for Type 1 Diabetes"
+rule "Apply Insulin Therapy for Type 1 Diabetes, no overweight, no infants "
     when
     $patient : Patient(typeOfDiabetes == 1, age >= 10, bmi <25)
     then
@@ -24,19 +24,17 @@ rule "Apply Insulin Therapy for Type 1 Diabetes"
         
 end
 
-rule "Therapy for Type 1 Diabetes, overweight"
+rule "Therapy for Type 1 Diabetes, overweight, no infants"
     when
     $patient : Patient(typeOfDiabetes == 1, age >= 10, bmi >= 25)
     then
         $patient.applyTreatment("Insulin", true, 2.0/3.0);
-        $patient.applyTreatment("Metmorfin", true, 1.0/3.0);
-        
-        
+        $patient.applyTreatment("Metmorfin", true, 1.0/3.0);     
 end
 
 // TYPE 2
 
-rule "Therapy for Type 2 Diabetes"
+rule "Therapy for Type 2 Diabetes, kids"
     when
         $patient : Patient(typeOfDiabetes == 2, 10 <= age && age < 12)
     then
@@ -44,7 +42,7 @@ rule "Therapy for Type 2 Diabetes"
         $patient.applyTreatment("Metmorfin", true, 2.0/3.0);
 end
 
-rule "Apply Metmorfin for Type 2 Diabetes"
+rule "Therapy for Type 2 Diabetes, underweight, teens"
     when
         $patient : Patient(typeOfDiabetes == 2, bmi < 18.5, 12 <= age && age < 18 )
     then
@@ -53,12 +51,79 @@ rule "Apply Metmorfin for Type 2 Diabetes"
          
 end
 
-rule "Apply Metmorfin  Type 2 Diabetes"
+rule "Therapy for Type 2 Diabetes, underweight, young adults and adults"
     when
-        $patient : Patient(typeOfDiabetes == 2, age > 9 && age < 13 )
+        $patient : Patient(typeOfDiabetes == 2, bmi < 18.5, 18 <= age && age < 51 )
     then
-         $patient.applyTreatment("Metmorfin", true, 1.0);
-         
+        $patient.applyTreatment("Insulin", true, 1.0/8.0);
+        $patient.applyTreatment("Metmorfin", true, 1.0/4.0);
+        $patient.applyTreatment("Sitagliptin", true, 1.0/8.0);
+        $patient.applyTreatment("Saxagliptin", true, 1.0/8.0);
+        $patient.applyTreatment("Linagliptin", true, 1.0/8.0);
+        $patient.applyTreatment("Rosiglitazone", true, 1.0/8.0);
+        $patient.applyTreatment("Pioglitazone", true, 1.0/8.0);
 end
 
+rule "Therapy for Type 2 Diabetes, underweight, middle-aged and senior"
+    when
+        $patient : Patient(typeOfDiabetes == 2, bmi < 18.5,  age >= 51 )
+    then
+        $patient.applyTreatment("Insulin", true, 1.0/6.0);
+        $patient.applyTreatment("Metmorfin", true, 1.0/3.0);
+        $patient.applyTreatment("Sitagliptin", true, 1.0/6.0);
+        $patient.applyTreatment("Saxagliptin", true, 1.0/6.0);
+        $patient.applyTreatment("Linagliptin", true, 1.0/6.0);
+end
+
+rule "Therapy for Type 2 Diabetes, normoweight, teens"
+    when
+        $patient : Patient(typeOfDiabetes == 2, 18.5 <= bmi && bmi < 25, 12 <= age && age < 18 )
+    then
+        $patient.applyTreatment("Insulin", true, 1.0/4.0);
+        $patient.applyTreatment("Metmorfin", true, 2.0/4.0);
+        $patient.applyTreatment("Exenatide", true, 1.0/4.0);
+        
+end
+
+rule "Therapy for Type 2 Diabetes, normoweight, young-adults"
+    when
+        $patient : Patient(typeOfDiabetes == 2, 18.5 <= bmi && bmi < 25, 18 <= age && age < 20 )
+    then
+        $patient.applyTreatment("Insulin", true, 1.0/14.0);
+        $patient.applyTreatment("Metmorfin", true, 2.0/14.0);
+        $patient.applyTreatment("Sitagliptin", true, 1.0/14.0);
+        $patient.applyTreatment("Saxagliptin", true, 1.0/14.0);
+        $patient.applyTreatment("Linagliptin", true, 1.0/14.0);
+        $patient.applyTreatment("Dulaglutide", true, 1.0/14.0);
+        $patient.applyTreatment("Exenatide", true, 1.0/14.0);
+        $patient.applyTreatment("Lixisenatide", true, 1.0/14.0);
+        $patient.applyTreatment("Bexagliflozin", true, 1.0/14.0);
+        $patient.applyTreatment("Canagliflozin", true, 1.0/14.0);
+        $patient.applyTreatment("Dapagliflozin", true, 1.0/14.0);
+        $patient.applyTreatment("Rosiglitazone", true, 1.0/14.0);
+        $patient.applyTreatment("Pioglitazone", true, 1.0/14.0);
+end
+
+rule "Therapy for Type 2 Diabetes, normoweight, adults"
+    when
+        $patient : Patient(typeOfDiabetes == 2, 18.5 <= bmi && bmi < 25, 20 <= age && age < 51 )
+    then
+        $patient.applyTreatment("Insulin", true,1.0/17.0);
+        $patient.applyTreatment("Metmorfin", true, 2.0/17.0);
+        $patient.applyTreatment("Sitagliptin", true,1.0/17.0);
+        $patient.applyTreatment("Saxagliptin", true,1.0/17.0);
+        $patient.applyTreatment("Linagliptin", true,1.0/17.0);
+        $patient.applyTreatment("Dulaglutide", true,1.0/17.0);
+        $patient.applyTreatment("Exenatide", true,1.0/17.0);
+        $patient.applyTreatment("Lixisenatide", true,1.0/17.0);
+        $patient.applyTreatment("Bexagliflozin", true,1.0/17.0);
+        $patient.applyTreatment("Canagliflozin", true,1.0/17.0);
+        $patient.applyTreatment("Dapagliflozin", true,1.0/17.0);
+        $patient.applyTreatment("Glimepiride", true,1.0/17.0);
+        $patient.applyTreatment("Glipizide", true,1.0/17.0);
+        $patient.applyTreatment("Glyburide", true,1.0/17.0);
+        $patient.applyTreatment("Rosiglitazone", true,1.0/17.0);
+        $patient.applyTreatment("Pioglitazone", true,1.0/17.0);
+
+end
 

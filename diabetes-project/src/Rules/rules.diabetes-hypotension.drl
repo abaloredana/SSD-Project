@@ -1,1 +1,4 @@
 
+package diabetes.project
+import diabetes.project.Patient
+import diabetes.project.Treatment
