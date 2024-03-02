@@ -224,3 +224,85 @@ rule "Therapy for Osteoporosis"
         $patient.applyTreatment("Canagliflozin", true, 100.0);// unk
         $patient.applyTreatment("Dapagliflozin", true, 100.0);// unk  
 end
+
+rule "Therapy for BMI  >= NORMOWEIGHT"
+    when
+    $patient : Patient(bmi < 25 && bmi >= 18.5)
+    then
+        $patient.applyTreatment("Dulaglutide", true, 100.0);
+        $patient.applyTreatment("Exenatide", true, 100.0);
+        $patient.applyTreatment("Lixisenatide", true, 100.0);
+        $patient.applyTreatment("Bexagliflozin", true, 100.0);
+        $patient.applyTreatment("Canagliflozin", true, 100.0);
+        $patient.applyTreatment("Dapagliflozin", true, 100.0);
+        $patient.applyTreatment("Glimepiride", true, 100.0);
+        $patient.applyTreatment("Glipizide", true, 100.0);
+        $patient.applyTreatment("Glyburide", true, 100.0);
+end
+
+rule "Therapy for BMI >= OVERWIGHT"
+    when
+    $patient : Patient(bmi >= 25 && bmi <= 29.9)
+    then
+        $patient.applyTreatment("Semaglutide", true, 100.0);
+end
+rule "Therapy for BMI < OVERWIGHT"
+    when
+    $patient : Patient(rule "Therapy for BMI OVERWIGHT"
+    when
+    $patient : Patient(bmi < 25)
+    then
+        $patient.applyTreatment("Rosiglitazone", true, 100.0);
+        $patient.applyTreatment("Pioglitazone", true, 100.0);
+end)
+    then
+        $patient.applyTreatment("Semaglutide", true, 100.0);
+        $patient.applyTreatment("Rosiglitazone", true, 100.0);
+        $patient.applyTreatment("Pioglitazone", true, 100.0);
+end
+
+rule "Therapy for Age >9"
+    when
+    $patient : Patient(age > 9)
+    then
+        $patient.applyTreatment("Metmorfin", true, 100.0);
+end
+
+rule "Therapy for Age >17"
+    when
+    $patient : Patient(age > 17)
+    then
+        $patient.applyTreatment("Sitagliptin", true, 100.0);
+        $patient.applyTreatment("Saxagliptin", true, 100.0); 
+        $patient.applyTreatment("Linagliptin", true, 100.0);
+        $patient.applyTreatment("Dulaglutide", true, 100.0);
+        $patient.applyTreatment("Lixisenatide", true, 100.0);
+        $patient.applyTreatment("Bexagliflozin", true, 100.0);
+        $patient.applyTreatment("Canagliflozin", true, 100.0);
+        $patient.applyTreatment("Dapagliflozin", true, 100.0);
+end
+
+rule "Therapy for Age >11"
+    when
+    $patient : Patient(age > 11)
+    then
+        $patient.applyTreatment("Exenatide", true, 100.0);        
+        $patient.applyTreatment("Semaglutide", true, 100.0);
+end
+
+rule "Therapy for Age 19<x<66"
+    when
+    $patient : Patient(age > 19 && age < 66)
+    then
+        $patient.applyTreatment("Glimepiride", true, 100.0);
+        $patient.applyTreatment("Glipizide", true, 100.0);
+        $patient.applyTreatment("Glyburide", true, 100.0);
+end
+
+rule "Therapy for Age 17<x<51"
+    when
+    $patient : Patient(age > 17 && age < 51)
+    then
+        $patient.applyTreatment("Rosiglitazone", true, 100.0);
+        $patient.applyTreatment("Pioglitazone", true, 100.0);
+end
